@@ -1,0 +1,179 @@
+/* The Modal pop up to send feedback (first in the background) */
+.modal_box {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;  /* % of the screen, not the container, since it is a dialog on top*/
+    height: 100%;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    text-align: left;
+}
+
+
+.modal_box_no_dark_bg {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    margin-top: 80px;  /* Location of the box, using margin instead of padding so that search is still accesible */
+    left: 33vw;
+    top: 0;
+    width: 33%;  /* % of the screen, not the container, since it is a dialog on top*/
+    /*height: 60%;  only as tall as its content */
+    overflow: auto; /* Enable scroll if needed */
+    text-align: left;
+}
+
+
+/* Modal Content */
+.modal_content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #D9D9D9;
+    width: 30%; /* parent occupies entire screen and we dont want to cover the instructins under this (which are being reported) */
+    border-radius: 10px;
+}
+
+/* Modal Content */
+.modal_content_no_dark_bg {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #D9D9D9;
+    width: 100%; /* parent occupies entire screen and we dont want to cover the instructins under this (which are being reported) */
+    border-radius: 10px;
+}
+
+/* The Close Button */
+.close_modal_box {
+    color: #aaaaaa;
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close_model_box:hover,
+.close_model_box:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#feedback_title {
+    color: black;
+}
+
+#ta_feedback {
+    width: 100%;
+    height: 200px;
+    margin-bottom: 10px;
+    font-family: var(--myfonts);
+    font-size: 18px;
+}
+
+#feedback_email {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 10px;
+    padding-left: 5px;
+    font-family: var(--myfonts);
+    font-size: 18px;
+}
+
+#send_feedback_button {
+    cursor: pointer;
+    font-size: 18px;
+}
+
+#feedback_result {
+    color: black;
+}
+
+#message_for_user {
+    color: black;
+}
+
+/* reusable modals elements */
+.modal_button {
+    height: 32px;
+    cursor: pointer;
+}
+
+.modal_title {
+    font-size: 22px;
+    color: black;
+    margin-bottom: 20px;
+}
+
+.modal_input_text {
+    height: 32px;
+}
+
+
+.modal_text {
+    color: black;
+    font-size: 20px;
+}
+
+.modal_text_smaller {
+    color: black;
+    font-size: 16px;
+}
+
+.modal_section_separator {
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+
+.modal_text_code {
+    width: 90%;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Mobile  ----------------------------------------------------*/
+@media screen and (max-width: 900px) {
+    .modal_content {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+
+    .modal_content {
+        width: 90%; /* parent occupies entire screen and we dont want to cover the instructins under this (which are being reported) */
+    }
+
+    .modal_button {
+        height: 40px;
+    }
+
+    .modal_input_text {
+        height: 40px;
+    }
+
+    .modal_title {
+
+    }
+
+    .modal_text {
+        font-size: 20px;
+    }
+
+    .modal_text_smaller {
+        font-size: 16px;
+    }
+
+    /*no dark bg version*/
+    .modal_box_no_dark_bg {
+        margin-top: 80px;  /* Location of the box, using margin instead of padding so that search is still accesible */
+        left: 2vw;
+        width: 95%;
+    }
+}

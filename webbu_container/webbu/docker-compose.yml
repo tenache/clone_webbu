@@ -1,0 +1,46 @@
+version: '3.7'
+
+services:
+  web:
+    container_name: webbu_flask_server
+    build: ./services/web
+    command: py_conda_env/bin/python -m flask run -h 0.0.0.0
+    volumes:
+      - ./services/web/:/usr/src/app/web:cached  # trying cached/delegated to see if it reduces CPU usage on mac
+    ports:
+      - 7002:7002  # same as port defined via FLASK_RUN_PORT
+    env_file:
+      - ./.env.dev
+    environment:
+      STRIPE_TEST_MODE: "${STRIPE_TEST_MODE}"  # overridable in the terminal
+      NGROK_WEBHOOK: "${NGROK_WEBHOOK}"  # overridable in the terminal
+    networks:
+      - postgres_network
+  db:
+    image: postgres:12-alpine
+    container_name: postgres_container_webbu
+    hostname: postgres
+    volumes:
+      # point a volume to /var/lib/postgresql/data/, because postgres is
+      # configd to use it and that will persist the data across multiple docker-compose runs
+      # use ./postgres_data as the src dir so that we can access it locally - for backups?
+      # (outside of /var/lib/docker... which is inside the docker virtual machine)
+      - ./postgres_data:/var/lib/postgresql/data/:cached
+    environment:
+      - POSTGRES_DB=webbudb
+      - POSTGRES_USER=webbudbuser
+      - POSTGRES_PASSWORD=hello_user
+    ports:
+      - "5432:5432"  # default TCP port for postgres - useful por pgadmin but the web interface is at 5050
+    networks:
+      - postgres_network
+
+
+volumes:
+  postgres_data:
+  pgadmin:
+
+
+networks:
+  postgres_network:
+    driver: bridge

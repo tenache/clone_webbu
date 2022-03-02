@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Montserrat:wght@200&display=swap');
+
+:root {
+    --contentwidth: 40%;
+    --contentwidth2: 60%;
+    --contentwidth3: 80%;
+    --contentwidthmobile: 95%;
+    --sp_fonts: 'Comfortaa', 'Montserrat', -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
+}
+
+html {
+    width: 100%;
+    height: 200%;  /* using 200% so that the gradient doesnt end abruptly if there is scrolling */
+    font-family: var(--sp_fonts);
+    /*background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);*/
+    background-color: #8EC5FC;
+    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+
+    color: white;
+}
+
+h3 {
+    font-size: 26px;
+    margin-bottom: 0px;
+}
+
+input {
+    font-family: var(--sp_fonts);
+}
+
+#user_msg {
+    width: 30%;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    color: black;
+    background-color: white;
+    border-radius: 5px 5px 5px 5px;
+    text-align: center;
+}
+
+#content_div {
+    width: var(--contentwidth);
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#top_row {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+#username {
+
+}
+
+.white_links {
+    color: white;
+}
+
+.white_links:visited {
+    color: white;
+}
+
+#skill_top_row {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#create_skill_button {
+    padding: 10px;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: black;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 25%); /*match google button*/
+    -o-box-shadow: 0 2px 4px 0 rgb(0 0 0 / 25%);
+    -webkit-box-shadow: 0 2px 4px 0 rgb(0 0 0 / 25%);
+    -moz-box-shadow: 0 2px 4px 0 rgb(0 0 0 / 25%);
+}
+
+#create_skill_button:hover {
+    opacity: 0.6;
+}
+
+#create_skill_button:visited {
+    color: black;
+}
+
+#skills_div{
+    margin-bottom: 40px;
+}
+
+.skill_row {
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.skill_row:hover {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.skill_title {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.skill_link {
+    cursor: pointer;
+}
+
+
+#no_skills_yet {
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width: 1200px) {
+    #content_div {
+        width: var(--contentwidth2);
+    }
+}
+
+@media screen and (max-width: 900px) {
+    #content_div {
+        width: var(--contentwidth3);
+    }
+}
+
+/* Mobile ------------------------------------------- */
+@media screen and (max-width: 600px) {
+
+    h3 {
+        margin-bottom: 20px;
+    }
+
+    #content_div {
+        width: var(--contentwidthmobile);
+        padding-top: 20px;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+}

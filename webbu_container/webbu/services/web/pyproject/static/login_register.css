@@ -1,0 +1,260 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Montserrat:wght@200&display=swap');
+
+:root {
+    --contentwidth: 50%;
+    --contentwidthmobile: 98%;
+    --sp_fonts: 'Comfortaa', 'Montserrat', -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
+}
+
+html {
+    width: 100%;
+    height: 200%;  /* using 200% so that the gradient doesnt end abruptly if there is scrolling */
+    font-family: var(--sp_fonts);
+    /*background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);*/
+    background-color: #8EC5FC;
+    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+
+    color: white;
+}
+
+
+input {
+    font-family: var(--sp_fonts);
+}
+
+#content_div_1 {
+    width: var(--contentwidth);
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 10px;
+}
+
+
+#header_bar {
+    width: var(--contentwidth);
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    height: 40px;
+    margin-top: 10px;
+    margin-bottom: 40px;
+
+    font-family: var(--sp_fonts);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    padding-left: 10px;
+}
+
+#header_img {
+    max-height: 100%;
+    border-radius: 10px;
+}
+
+#header_text {
+    font-size: 34px;
+    margin-left: 10px;
+    display: inline-block;
+}
+
+#login_method{
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: 450px;
+    min-height: 250px;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#signinbox_title {
+    display: block;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 22px;
+    margin-bottom: 30px;
+    line-height: 1.3em;
+}
+
+.smaller_text {
+    font-size: 16px;
+}
+
+#email_question {
+    text-align: left;
+    width: 100%;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+#login_via_email {
+    width: 80%;
+    margin-bottom: 5px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#email_login_input{
+    display: block; /*newline*/
+    width: 100%;
+    height: 35px;
+    border: 1px solid gray;
+    padding-left: 4px;
+    box-sizing: border-box; /*so that it doesnt look taller than the button next to it*/
+    -moz-box-sizing: border-box;
+    border-radius: 2px 2px 2px 2px;
+}
+
+#email_login_button{
+    width: 100%;
+    height: 35px;
+    cursor: pointer;
+    border: 0px solid gray; /*match google button */
+    margin-top: 2px;
+    border-radius: 2px 2px 2px 2px;
+
+    /*box-shadow: 0px 5px 10px -2px #222; *//* horizontal, vertical, blurr, spread */
+/*    -o-box-shadow: 0px 5px 10px -2px #222;
+    -webkit-box-shadow: 0px 5px 10px -2px #444;
+    -moz-box-shadow: 0px 5px 10px -2px #222;
+*/
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 25%); /*match google button*/
+    -o-box-shadow: 0 2px 4px 0 rgb(0 0 0 / 25%);
+    -webkit-box-shadow: 0 2px 4px 0 rgb(0 0 0 / 25%);
+    -moz-box-shadow: 0 2px 4px 0 rgb(0 0 0 / 25%);
+
+    -webkit-appearance:none; /* needed for iphone 8 chrome otherwise it shows like a circular-rounded button*/
+}
+
+#email_login_button:hover{
+    opacity: 0.8;
+}
+
+
+#by_email_status_div {
+    display: none; /* gone at first */
+    border-radius: 5px;
+    width: 80%; /* match login_via_email */
+    min-height: 120px; /* long enough for the 'check your email..' msg' */
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
+    align-items: center;
+
+}
+
+#by_email_status_text {
+    height: 100%;
+    margin: 0px;
+    padding: 5px;
+    color: #FFFFFF;
+    line-height: 20px;
+}
+
+#or_login{
+    margin-top: 40px;
+    margin-bottom: 0px;
+}
+
+#google_login{
+    width: 80%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-family: var(--sp_fonts);
+}
+
+
+#contact_at_bottom {
+    margin-top: 20px;
+    text-align: center;
+}
+
+
+#profile_img_div {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    background-color: #F4F6F8; /*match shopify gray bg*/
+    height: 140px;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+
+.switch_mode_link {
+    color: white;
+}
+
+.switch_mode_link:visited {
+    color: white;
+}
+
+
+/* Mobile ------------------------------------------- */
+@media screen and (max-width: 600px) {
+
+    #content_div_1 {
+        width: var(--contentwidthmobile);
+        padding-left: 0px;
+        padding-right: 0px;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    #login_method{
+        width: var(--contentwidthmobile);
+        padding: 5px;
+    }
+    #login_via_email {
+        width: 100%;
+        min-height: 120px;
+        margin-bottom: 5px;
+    }
+    #email_login_input{
+        height: 50px;
+    }
+
+    #email_login_button{
+        width: 100%;
+        height: 50px;
+        margin-top: 5px;
+        margin-left: 0px;
+    }
+    #signinbox_title {
+        display: block;
+        width: 100%;
+    }
+    .how_it_works_items {
+        width: 100%;
+    }
+}
+
+
+/*Google Login alignment: https://stackoverflow.com/questions/38805236/center-google-sign-in-button*/
+
+.g-signin2{
+  width: 100%;
+}
+
+.g-signin2 > div{
+  margin: 0 auto;
+}
+
+.abcRioButtonContentWrapper {
+    /*background color for google button*/
+    background-color: #EFEFEF;
+    color: black;
+}

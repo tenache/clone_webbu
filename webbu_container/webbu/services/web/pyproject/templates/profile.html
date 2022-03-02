@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+
+        <title>Profile - Webbu</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/static/profile.css?{{file_ts}}"/>
+        <script type="text/javascript" src="/static/jquery_351.js"></script>
+        <link rel="icon" type="image/svg+xml" href="/static/imgs/favicon.svg" />
+
+        {{header_scripts|safe}}
+
+    </head>
+    <body onload="">
+        {% if user_msg %}
+        <p id='user_msg'>{{user_msg}}</p>
+        {% endif %}
+        <div id='content_div'>
+            <div id='top_row'>
+                <label id='username'>{{username}}</label>
+            </div>
+            <div id='skills_div'>
+                <h3>Created Skills</h3>
+                <div id='skill_top_row'>
+                    <a id='create_skill_button' href='/create'>Create New Skill</a>
+                </div>
+                {% if skill_instruct_tuples|length > 0 %}
+                    {% for skill_instruc_tuple in skill_instruct_tuples %}
+                    <div class='skill_row'>
+                        <label class='skill_title'>{{skill_instruc_tuple[1]}}</label>
+                        <a href='/s/{{skill_instruc_tuple[0].visible_id}}' class='skill_id white_links'>Expand</a>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <p id='no_skills_yet'>You haven't created any skills yet</p>
+                {% endif %}
+            </div>
+            
+            <p id='contact_at_bottom'>Need help? <a class='white_links' href='mailto:webbuapp@gmail.com'>webbuapp@gmail.com</a></p>
+
+        </div>
+    </body>
+</html>

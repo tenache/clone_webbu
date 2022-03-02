@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title data-translation_id="main_title">{{page_title}} - Webbu</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/static/create_skill.css?{{file_ts}}">
+        <script type="text/javascript" src="/static/create_skill.js?{{file_ts}}"></script>
+        <script type="text/javascript" src="/static/jquery_351.js"></script>
+        <link href="/static/imgs/favicon.svg" rel="icon" type="image/svg+xml">
+
+    </head>
+    <body onload="init_js()">
+        {% if user_msg %}
+        <p id='user_msg'>{{user_msg}}</p>
+        {% endif %}
+        <div id='top_menu_div'>
+            <a class='top_menu_link' href='/help'>Help</a>
+            {% if editing %}
+            <a class='top_menu_link' href='/create'>Create</a>
+            {% endif %}
+            <a class='top_menu_link' href='/profile'>My Skills</a>
+        </div>
+        <div id='content_div_1' class='content_div'>
+            <h1>{{page_title}}</h1>
+            {% if editing %}
+            <label id='v_id_label'>id: </label><label id='v_id_title' title='Skill Identifier'>{{skill_obj.visible_id}}</label>
+            {% endif %}
+
+            <h3 id='steps_title'>Steps</h3>
+            <p id='field_desc'>A skill is a sequence of steps. Use the dropdown below to choose the steps for your skill.</p><!--  <br>Tutorial available here: (TODO: youtube link)</p> -->
+            <div id='step_div'>
+                <div id="create_steps_row">
+                    <select id="step_dropdown" onchange="step_dropdown_changed(this)">
+                        <option value="" selected disabled>Choose an action</option>
+                        <option value="type_text">Type text</option>
+                        <option value="copy_text">Copy text</option>
+                        <option value="open_url">Open a website</option>
+                        <option value="shortcut">Keyboard shortcut or key</option>
+                        <option value="delay">Delay (seconds)</option>
+                        <option value="submit_form">Submit an HTML form</option>
+                        <option value="click">Click</option>
+                        <option value="focus">Move focus to an HTML element</option>
+                        <option value="gsheet_cell">Move to a Google Sheets cell</option>
+                        <option value="change_style">Style an HTML element</option>
+                        <option value="display_msg">Display a message for the user</option>
+                        <option value="fetch_text">Fetch Text from a URL endpoint</option>
+                        <option value="fetch_json">Fetch JSON from a URL endpoint</option>
+                    </select>
+                    <input id='step_param' type='text' value="" placeholder="">
+                    <input id='step_param2' type='text' value="" placeholder="">
+                    <input id="new_step_row_button" type="button" value='+' onclick="add_step_row()">
+                </div>
+                <p id='notification_msg_steps' class='notif_msg'></p>
+                <div id="created_steps">
+                {% if editing %}
+                {% for step in steps %}
+                    <div id="new_step_row_{{loop.index}}" class="created_step_row">
+                        <p class="created_step_type">{{step['t']}}</p>
+                        <p class="created_step_param">{{step['p']}}</p>
+                        {% if 'p2' in step %}
+                        <p class="created_step_param2" style='display: inline-block;'>{{step['p2']}}</p>
+                        {% else %}
+                        <p class="created_step_param2">{{step['p2']}}</p>
+                        {% endif %}
+                        <img class="delete_step_row_button" src="/static/imgs/trash_white.svg" onclick="delete_step_row('new_step_row_{{loop.index}}')">
+                    </div>
+                {% endfor %}
+                {% endif %}
+                </div>
+            </div>
+
+            <h3 id='instructions_title'>Instructions</h3>
+            <p class='field_desc'>Type a few examples of how you would ask Alexa to do this. For example, <i>"make the background blue"</i> or <i>"create a chart for column B"</i>. Write down as many as you want (at least 1).</p>
+
+            <div id="add_instructions_row">
+                <input type='text' id='instruction_text' placeholder="Example: make the text bold">
+                <input id="new_instruction_button" type="button" value='+' onclick="add_instruction_row()">
+            </div>
+            <p id='notification_msg_instructions' class='notif_msg'></p>
+            <div id="created_instructions">
+            {% if editing %}
+            {% for instruct in instructions %}
+                <div id="new_instruction_row_{{loop.index}}" class="created_instruction_row">
+                    <p class="created_instruction_text">{{instruct}}</p>
+                    <img class="created_instruction_delete_button" src="/static/imgs/trash_white.svg" onclick="delete_instruction_row('new_instruction_row_{{loop.index}}')">
+                </div>
+            {% endfor %}
+            {% endif %}
+            </div>
+
+            <h3 id='websites_title'>Websites (optional)</h3>
+            <p class='field_desc'>Does your skill work on any website? If not, type them below separated by commas. <br>Example: <i>"google.com, amazon.com"</i>.</p>
+            <input id='hosts_input' type='text' placeholder="All websites" value='{{hosts}}'>
+
+            <div id='loading_animation'>
+                <img src='/static/imgs/loading.svg'>
+            </div>
+            <div id='bottom_buttons_div'>
+                {% if editing %}
+                <img id="delete_skill_button" src="/static/imgs/trash_black.svg" onclick="delete_skill('{{skill_obj.visible_id}}')">
+                {% endif %}
+                <input id="create_skill_button" type="button" name="crete_skill_button" value='Save' onclick='save_skill_req()'>
+            </div>
+            <p id='notification_msg' class='notif_msg'></p>
+        </div>
+    </body>
+</html>

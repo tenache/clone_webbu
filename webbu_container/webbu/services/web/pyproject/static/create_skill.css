@@ -1,0 +1,408 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Montserrat:wght@200&display=swap');
+
+:root {
+    --contentwidth: 50%;
+    --contentwidthmobile: 95%;
+    --sp_fonts: 'Comfortaa', 'Montserrat', -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
+}
+
+html {
+    width: 100%;
+    height: 200%;  /* using 200% so that the gradient doesnt end abruptly if there is scrolling */
+    font-family: var(--sp_fonts);
+    /*background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);*/
+    background-color: #8EC5FC;
+    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+
+    color: white;
+}
+
+h3 {
+    margin-bottom: 5px;
+}
+
+textarea {
+    display: block;
+    border-radius: 5px 5px 5px 5px;
+    padding: 10px;
+    box-sizing: border-box; /*include the padding and border in an element's total width and height*/
+    font-family: var(--myfonts);
+}
+
+input {
+    display: block;
+    font-family: var(--sp_fonts);
+}
+
+#user_msg {
+    width: 30%;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    color: black;
+    background-color: white;
+    border-radius: 5px 5px 5px 5px;
+    text-align: center;
+}
+
+#top_menu_div {
+    width: var(--contentwidth);
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.top_menu_link {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+
+
+.top_menu_link:visited {
+    color: white;
+}
+
+
+.top_menu_link:hover {
+    opacity: 0.6;
+}
+
+
+#content_div_1 {
+    width: var(--contentwidth);
+    margin-left: auto;
+    margin-right: auto;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 10px;
+}
+
+#v_id_title {
+    font-size: 14px;
+}
+
+#v_id_title:hover {
+    opacity: 0.6;
+}
+
+#steps_title {
+    margin-top: 50px;
+}
+
+#steps_div {
+    width: 100%;
+}
+
+#create_steps_row {
+    height: 50px;
+    width: 100%;
+    display: flex;
+}
+
+#step_dropdown {
+    display: inline-block;
+    height: 100%;
+    flex: 6;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 5px 0px 0px 5px;
+    margin-right: 1px;
+    font-family: var(--sp_fonts);
+    box-sizing: border-box;
+    min-width: 0; /* flexbox trick to avoid issue on mobile (narrow screen )*/
+}
+
+#step_param {
+    height: 100%;
+    flex: 6;
+    display: inline-block;
+    border-radius: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    box-sizing: border-box;
+    min-width: 0; /* flexbox trick to avoid issue on mobile (narrow screen )*/
+}
+
+#step_param2 {
+    display: none;  /*invisible for most step types*/
+    height: 100%;
+    flex: 6;
+    border-radius: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    box-sizing: border-box;
+    min-width: 0; /* flexbox trick to avoid issue on mobile (narrow screen )*/
+}
+
+#new_step_row_button {
+    width: 100%;
+    flex: 1;
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 0px;
+    cursor: pointer;
+    box-sizing: border-box;
+    margin-bottom: 1px; /* for alignment with text input */
+    border: 0px;
+    border-radius: 0px 5px 5px 0px;
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 25%); /*match google button*/
+    -o-box-shadow: 0 2px 4px 0 rgb(0 0 0 / 25%);
+    -webkit-box-shadow: 0 2px 4px 0 rgb(0 0 0 / 25%);
+    -moz-box-shadow: 0 2px 4px 0 rgb(0 0 0 / 25%);
+    min-width: 0; /* flexbox trick to avoid issue on mobile (narrow screen )*/
+}
+
+#new_step_row_button:hover {
+    opacity: 0.6;
+}
+
+
+.created_step_row {
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 5px 5px 5px 5px;
+    padding: 5px;
+}
+
+.created_step_type {
+    height: 100%;
+    flex: 6;
+    display: inline-block;
+    vertical-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.created_step_param {
+    height: 100%;
+    flex: 6;
+    display: inline-block;
+    vertical-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.created_step_param2 {
+    height: 100%;
+    flex: 6;
+    display: none; /* only some steps have param2 */
+    vertical-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.delete_step_row_button {
+    height: 50%;
+    flex: 1;
+    display: inline-block;
+    cursor: pointer;
+    vertical-align: center;
+}
+
+.delete_step_row_button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+#add_instructions_row {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.created_instruction_row {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 5px 5px 5px 5px;
+    padding: 5px;
+}
+
+#instruction_text {
+    flex: 12;
+    font-size: 14px;
+    border-radius: 5px 0px 0px 5px;
+    padding-left: 10px;
+}
+
+#new_instruction_button {
+    flex: 1;
+    cursor: pointer;
+    border: 0px;
+    margin-bottom: 1px; /* for alignment with text input */
+    border-radius: 0px 5px 5px 0px;
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 25%); /*match google button*/
+    -o-box-shadow: 0 2px 4px 0 rgb(0 0 0 / 25%);
+    -webkit-box-shadow: 0 2px 4px 0 rgb(0 0 0 / 25%);
+    -moz-box-shadow: 0 2px 4px 0 rgb(0 0 0 / 25%);
+}
+
+#new_instruction_button:hover {
+    opacity: 0.6;
+}
+
+#created_instructions {
+    width: 100%;
+}
+
+.created_instruction_row {
+    width: 100%;
+    display: flex;
+}
+
+.created_instruction_text {
+    flex: 12;
+    display: inline-block;
+}
+
+.created_instruction_delete_button {
+    flex: 1;
+    height: 50%;
+    display: inline-block;
+    cursor: pointer;
+    vertical-align: center;
+}
+
+.created_instruction_delete_button:hover {
+    opacity: 0.6;
+}
+
+
+.field_desc {
+    margin-top: 0px;
+}
+
+#hosts_input {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 5px 5px 5px 5px;
+    box-sizing: border-box; /*include the padding and border in an element's total width and height*/
+}
+
+#bottom_buttons_div {
+    width: 30%;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+#create_skill_button {
+    flex: 4;
+    cursor: pointer;
+    display: block;
+    font-size: 14px;
+    padding: 10px;
+    border: 0px;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 25%); /*match google button*/
+    -o-box-shadow: 0 2px 4px 0 rgb(0 0 0 / 25%);
+    -webkit-box-shadow: 0 2px 4px 0 rgb(0 0 0 / 25%);
+    -moz-box-shadow: 0 2px 4px 0 rgb(0 0 0 / 25%);
+    vertical-align: top;
+}
+
+#create_skill_button:hover {
+    background-color: #ccc;
+}
+
+#delete_skill_button {
+    flex: 1;
+    height: 20px;
+    max-height: 20px;
+    margin-right: 5px;
+    display: inline-block;
+    cursor: pointer;
+    vertical-align: top;
+
+    background-color: #EFEFEF;
+
+    padding: 10px;
+    border: 0px;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 25%); /*match google button*/
+    -o-box-shadow: 0 2px 4px 0 rgb(0 0 0 / 25%);
+    -webkit-box-shadow: 0 2px 4px 0 rgb(0 0 0 / 25%);
+    -moz-box-shadow: 0 2px 4px 0 rgb(0 0 0 / 25%);
+}
+
+#delete_skill_button:hover {
+    background-color: #ccc;
+}
+
+.notif_msg {
+    display: none;
+    background-color: white;
+    color: black;
+    padding: 10px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+#notification_msg {
+    font-size: 24px;
+    text-align: center;
+}
+
+#loading_animation {
+    margin-top: 20px;
+    width: 100%;
+    display: none;
+    text-align: center;
+}
+
+
+#instructions_title {
+    margin-top: 50px;
+}
+
+#websites_title {
+    margin-top: 50px;
+}
+
+
+/* Mobile ------------------------------------------- */
+@media screen and (max-width: 600px) {
+
+    h3 {
+        margin-bottom: 20px;
+    }
+
+    #user_msg {
+        width: 70%;
+    }
+
+    #top_menu_div {
+        width: var(--contentwidthmobile);
+    }
+
+    #content_div_1 {
+        width: var(--contentwidthmobile);
+        padding-top: 20px;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+
+    #bottom_buttons_div {
+        width: 70%;
+    }
+
+}
+
+
