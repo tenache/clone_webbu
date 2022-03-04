@@ -14,6 +14,7 @@ services:
     environment:
       STRIPE_TEST_MODE: "${STRIPE_TEST_MODE}"  # overridable in the terminal
       NGROK_WEBHOOK: "${NGROK_WEBHOOK}"  # overridable in the terminal
+      MAIL_PASSWORD: "${MAIL_PASSWORD}"  # overridable in the terminal
     networks:
       - postgres_network
   db:
