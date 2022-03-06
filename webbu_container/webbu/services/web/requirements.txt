@@ -1,22 +1,22 @@
 # server
-Flask==1.1.1
-gunicorn==20.0.4
-Flask-SQLAlchemy==2.4.1
-psycopg2-binary==2.8.5
+Flask==2.0.3
+gunicorn==20.1.0
+Flask-SQLAlchemy==2.5.1
+psycopg2-binary==2.9.3
 flask-cors==3.0.10
 
 # utilities
-requests==2.23.0
+requests==2.27.1
 
 # send emails
 Flask-Mail==0.9.1
 
 # payments
-stripe
+stripe==2.67.0
 
 # data & tables
-pandas==1.2.2
-numpy==1.18.3
-scipy==1.6.1  # required for pandas' kendall coref
-matplotlib==3.3.4
-openpyxl==3.0.7  # handle excel files
+pandas==1.4.1
+numpy==1.22.2
+scipy==1.8.0  # required for pandas' kendall coref
+matplotlib==3.5.1
+openpyxl==3.0.9  # handle excel files

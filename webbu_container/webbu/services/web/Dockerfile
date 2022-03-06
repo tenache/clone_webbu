@@ -1,6 +1,11 @@
 # pull official base image
 FROM centos:8
 
+# centos8 reached EOL on Dec 2021 and the yum repositories were moved to vault.centos.org
+RUN cd /etc/yum.repos.d/ && \
+    sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-* && \
+    sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
+
 RUN yum -y install which vim wget curl git tree
 
 # set work directory
@@ -24,7 +29,7 @@ ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
 # Copy spacy models that will be later installed via pip
-COPY en_core_web* /usr/src/app/spacy_models/
+# COPY en_core_web* /usr/src/app/spacy_models/
 
 # install dependencies
 COPY ./requirements.txt /usr/src/app/requirements.txt
