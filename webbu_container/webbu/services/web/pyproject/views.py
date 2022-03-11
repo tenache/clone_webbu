@@ -102,24 +102,6 @@ def get_req_info(request):
     return req_info
 
 
-def save_page_view_event(request, page_name, user_id, guest_id, req_info, shop_id=None):
-
-    # db_interface.record_page_view(
-    #     request.url,
-    #     page_name,
-    #     user_id,
-    #     guest_id,
-    #     shop_id,
-    #     req_info['user_ip'],
-    #     req_info['browser'],
-    #     req_info['is_mobile'],
-    #     req_info['operating_system'],
-    #     req_info['user_agent'],
-    #     req_info['referrer'],
-    # )
-    pass
-
-
 def get_timestamp_for_file():
     '''
     Get the timestamp so that we get updated .css and .js every day
@@ -127,6 +109,17 @@ def get_timestamp_for_file():
     default_ts = datetime.datetime.now().strftime("%d%b%Y")
     # TODO: get modified date for each file to improve caching performance
     return default_ts
+
+
+@app.route('/')
+def main(name=None):
+    _ = get_req_info(request)
+
+    return render_template(
+        'landing.html',
+        file_ts=get_timestamp_for_file(),
+        header_scripts=header_scripts,
+    )
 
 
 @app.route('/help')
