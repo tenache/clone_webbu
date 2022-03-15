@@ -535,7 +535,8 @@ def get_user_skills(user_id):
     try:
         skill_text_tuples = db.session.query(Skill, func.max(SkillInstruction.instruction)).filter(
             Skill.deleted == False,  # noqa
-            SkillInstruction.skill_id == Skill.id
+            Skill.author_id == user_id,
+            SkillInstruction.skill_id == Skill.id,
         ).group_by(Skill.id).all()  # only get one instruction per skill
 
         print(f"get_user_skills: found: {len(skill_text_tuples)}")
