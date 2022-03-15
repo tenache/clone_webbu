@@ -532,10 +532,9 @@ def take_to_login(request, req_info, clear_login_cookies=False, status_text='', 
     registering = True if request.args.get('registering') == 'true' else False
 
     sign_in_title = 'Sign in'
-    page_name = 'login'
 
     guest_id = create_guest_id_if_not_set()
-    save_page_view_event(request, page_name, None, guest_id, req_info)
+    # save_page_view_event(request, 'login', None, guest_id, req_info)
 
     invite_by_name = ''
 
