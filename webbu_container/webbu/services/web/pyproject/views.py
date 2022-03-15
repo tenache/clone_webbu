@@ -744,7 +744,15 @@ def user_profile():
     )
 
 
+@app.route('/privacy')
+def privacy(name=None):
+    _ = get_req_info(request)
 
+    return render_template(
+        'privacy_policy.html',
+        file_ts=get_timestamp_for_file(),
+        header_scripts=header_scripts,
+    )
 
 
 
