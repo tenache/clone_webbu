@@ -12,7 +12,11 @@
         {% if user_msg %}
         <p id='user_msg'>{{user_msg}}</p>
         {% endif %}
-        <h1>Webbu</h1>
+        <div id='top_bar'>
+            <div id='top_bar_inner'>
+                <h1>Webbu</h1>
+            </div>
+        </div>
         <div id='parent_content_div'>
             <div id='content_div_1' class='content_div'>
                 <h3>Alexa for your browser</h3>
@@ -24,17 +28,24 @@
                 <div id='video_div'>
                     <iframe id='video_iframe' src="https://www.youtube.com/embed/p-aRm8w36TY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
+            </div>
+            <div id='content_div_3' class='content_div'>
+                <h3>Use cases</h3>
+                <p>Use the <a href='https://chrome.google.com/webstore/detail/webbu/mbhobmknhidpnafkmpblhpngbahofoob'>Webbu browser extension</a> on any website to do all sorts of tasks:</p>
                 <p class='quote'>"make the background blue"</p>
                 <p class='quote'>"make the image larger"</p>
                 <p class='quote'>"Chart the data on column C"</p>
             </div>
             <div id='content_div_3' class='content_div'>
-                <p>Everyone has different needs, that's why <label class='bigger_text'>anyone can create skills</label> for webbu.</p>
-                <p>Plus, the code is <label class='bigger_text'>open source</label> so the sky is the limit.</p>
+                <h3>Flexible and Open Source</h3>
+                <p>Everyone has different needs, that's why anyone can create skills for webbu.</p>
+                <p>Plus, the code is <a href='https://github.com/fersarr/webbu_backend'>open source<a/> - the sky is the limit.</p>
+                <a href='https://github.com/fersarr/webbu_backend'><img src='/static/imgs/GitHub-Mark-64px.png'></a>
             </div>
             <div id='content_div_4' class='content_div'>
+                <h3>Join Us</h3>
                 <p>We are just getting started, Join us on <a class='webbu_link' target="_blank" href='https://discord.gg/eRRpsuytrG'>Discord</a> or write to us at <a class='webbu_link' href='mailto:hello@webbu.app'>hello@webbu.app</a>.</p>
-                <p id='last_text'>*Webbu == Web Buddy</p>
+                <!-- <p id='last_text'>*Webbu == Web Buddy</p> -->
             </div>
         </div>
     </body>
