@@ -141,6 +141,9 @@ a:visited {
     max-width: 100%;
 }
 
+#github_image {
+    max-height: 24px;
+}
 
 @media screen and (max-width: 1200px) {
 
