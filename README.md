@@ -8,4 +8,4 @@ Webbu https://webbu.app/
 
 Chrome Extension https://chrome.google.com/webstore/detail/webbu/mbhobmknhidpnafkmpblhpngbahofoob
 
-Chrome Extension repo 
+Chrome Extension repo https://github.com/fersarr/webbu_extension
