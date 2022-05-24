@@ -47,7 +47,17 @@ if USE_STRIPE_TEST_MODE:
     STRIPE_SECRET_KEY = 'xxxx'
 
 
-header_scripts = ""
+header_scripts = """
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7SJ2H0J3X2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7SJ2H0J3X2');
+</script>
+"""
 
 
 def is_test_env():
