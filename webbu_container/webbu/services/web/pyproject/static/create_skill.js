@@ -228,6 +228,8 @@ function step_dropdown_changed(dropdown) {
         param_field.placeholder = "DOM selector"
         param_field2.placeholder = "style value (CSS)"
         param_field2.style.display = 'inline-block';
+    } else if ( value === "backend_steps" ) {
+        param_field.placeholder = "Type the id of the steps"
     }
 }
 

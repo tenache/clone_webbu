@@ -11,6 +11,7 @@ from flask_cors import CORS
 
 from pyproject import app
 import pyproject.db_interface as db_interface
+import pyproject.backend_steps as backend_steps
 
 CORS(app)  # Enable CORS for Chrome extension and external callers
 
@@ -420,6 +421,29 @@ def vote_skill(visible_id):
     resp = flask.make_response(jsonify({'status': 'success'}))
     set_guest_cookies(resp, guest_id)
     return resp
+
+
+@app.route('/get_backend_steps/<string:steps_id>', methods=['GET'])
+def get_backend_steps(steps_id):
+    """
+    Used by the browser extension to get the steps
+    to execute for a backend_steps item
+    """
+    _ = get_req_info(request)
+
+    user_id = None
+    username = None
+    user = is_logged_in_and_tokens_match(reason='get_backend_steps')
+    if user:
+        user_id = user.id
+        username = user.username
+
+    print(f"get_backend_steps: s_id: {steps_id} u: {user_id}")
+
+    steps_function = backend_steps.backend_steps.get(steps_id)
+    steps = steps_function()
+
+    return jsonify(steps)
 
 
 @app.route('/test_text', methods=['GET', 'POST'])
