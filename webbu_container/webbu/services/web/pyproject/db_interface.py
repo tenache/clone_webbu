@@ -491,25 +491,80 @@ def search_skill_by_text_partial_in_db(text):
         return None
 
 
-def search_skill_by_text_partial(text, already_added_skills):
-    # try to find partial matches in the DB using groups of 1, 2, 3, 4, and 5 words
-
+def generate_partial_texts(text):
+    """
+    Example:
+    LeftRight: make the background color blue
+    LeftRight: the background color blue
+    LeftRight: background color blue
+    LeftRight: color blue
+    LeftRight: blue
+    RightLeft: make the background color blue
+    RightLeft: make the background color
+    RightLeft: make the background
+    RightLeft: make the
+    RightLeft: make
+    """
     words = text.split(" ")
     group_size = min(5, len(words))  # if text has 3 words, no point in trying to group 5 words
+    group_size_2 = group_size
 
     start_idx = 0
     end_idx = group_size
 
-    found_tuples = []  # avoid duplicates (set) but keep order of insertion
-    print(f"search_skill_by_text_partial: t: {text}")
+    partial_texts = []
 
     # start from biggest group size, so that bigger partial matches are preferred over shorter ones.
+    # left-right window: "make the background blue" -> "make the background", "the background blue", "background blue"
     while group_size > 0:
         selected_words = words[start_idx:end_idx]
-        print(f"search_skill_by_text_partial: s: {start_idx} e: {end_idx} w: {selected_words}")
-        sub_text = ' '.join(selected_words)
+        if len(selected_words) > 0:
+            sub_text = ' '.join(selected_words)
+            # print(f"generate_partial_texts: LeftRight: {sub_text}")
+            partial_texts.append(sub_text)
 
-        new_results = search_skill_by_text_partial_in_db(sub_text)
+        start_idx += 1
+        end_idx += 1  # no problem if bigger than len(word)
+
+        group_size -= 1
+
+    # right-left window: "the background blue", "make the background", "make the"
+    group_size = group_size_2
+    end_idx = len(words)  # bigger than len is no problem for slice idx
+    start_idx = max(0, end_idx - group_size)
+    while group_size > 0:
+        selected_words = words[start_idx:end_idx]
+        if len(selected_words) > 0:
+            sub_text = ' '.join(selected_words)
+            # print(f"generate_partial_texts: RightLeft: {sub_text}")
+            partial_texts.append(sub_text)
+
+        start_idx -= 1
+        end_idx -= 1
+        if start_idx < 0:
+            start_idx = 0  # avoid negative numbers, they index from the end
+
+        group_size -= 1
+
+    # return biggest partial texts first, so that results/mathces
+    # are filled up with these first
+    partial_texts = sorted(partial_texts, key=lambda x: len(x), reverse=True)
+    return partial_texts
+
+
+def search_skill_by_text_partial(text, already_added_skills):
+    # try to find partial matches in the DB using groups of 1, 2, 3, 4, and 5 words
+    # from the given search text. Example:
+    # "make the background blue" search as
+    # "make the background", "background blue", etc.
+
+    found_tuples = []  # avoid duplicates (set) but keep order of insertion
+    partial_texts = generate_partial_texts(text)
+
+    for partial_text in partial_texts:
+
+        print(f"search_skill_by_text_partial: w: {partial_text}")
+        new_results = search_skill_by_text_partial_in_db(partial_text)
         if new_results is not None and len(new_results) > 0:
             for skill, text in new_results:
                 if skill.id not in already_added_skills:
@@ -518,14 +573,6 @@ def search_skill_by_text_partial(text, already_added_skills):
 
         if len(found_tuples) > 10:  # enough matches
             break
-
-        start_idx += 1
-        end_idx += 1
-
-        if end_idx > len(text):
-            break
-
-        group_size -= 1
 
     return found_tuples
 

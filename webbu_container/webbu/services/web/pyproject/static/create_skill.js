@@ -43,17 +43,17 @@ function add_step_row() {
 
     var new_step_type = document.createElement("p");
     new_step_type.className = 'created_step_type';
-    new_step_type.innerHTML = step_type;
+    new_step_type.innerText = step_type;
     new_step_row.appendChild(new_step_type);
 
     var new_step_param = document.createElement("p");
     new_step_param.className = 'created_step_param';
-    new_step_param.innerHTML = step_param;
+    new_step_param.innerText = step_param;
     new_step_row.appendChild(new_step_param);
 
     var new_step_param2 = document.createElement("p");
     new_step_param2.className = 'created_step_param2';
-    new_step_param2.innerHTML = step_param2;
+    new_step_param2.innerText = step_param2;
     if (step_param2) {
         new_step_param2.style.display = 'inline-block'; /* only some steps have param2 */
     }
@@ -104,9 +104,9 @@ function collect_all_steps() {
     input_divs = document.getElementsByClassName("created_step_row"); // in appareance order
     for (idx = 0; idx < input_divs.length; ++idx) {
         var curr_div = input_divs[idx];
-        var step_type = curr_div.getElementsByClassName("created_step_type")[0].innerHTML;
-        var step_param = curr_div.getElementsByClassName("created_step_param")[0].innerHTML;
-        var step_param2 = curr_div.getElementsByClassName("created_step_param2")[0].innerHTML;
+        var step_type = curr_div.getElementsByClassName("created_step_type")[0].innerText;
+        var step_param = curr_div.getElementsByClassName("created_step_param")[0].innerText;
+        var step_param2 = curr_div.getElementsByClassName("created_step_param2")[0].innerText;
 
         console.log("input: " + step_type + ", " + step_param + ", " + step_param2);
         all_inputs.push({'t': step_type, 'p': step_param, 'p2': step_param2});
@@ -119,7 +119,7 @@ function collect_all_instructions() {
     all_instructs = []
     divs = document.getElementsByClassName("created_instruction_row"); // in appareance order
     for (idx = 0; idx < divs.length; ++idx) {
-        var instruction = divs[idx].getElementsByClassName("created_instruction_text")[0].innerHTML;
+        var instruction = divs[idx].getElementsByClassName("created_instruction_text")[0].innerText;
         all_instructs.push(instruction);
     }
 
@@ -152,7 +152,7 @@ function save_skill_req() {
 
     var skill_visible_id = null;
     try {
-        skill_visible_id = document.getElementById('v_id_title').innerHTML;
+        skill_visible_id = document.getElementById('v_id_title').innerText;
     } catch (err) {}
 
     console.log('save_skill_req: skill_visible_id: ' + skill_visible_id);
@@ -254,7 +254,7 @@ function add_instruction_row() {
 
     var new_instruct = document.createElement("p");
     new_instruct.className = 'created_instruction_text';
-    new_instruct.innerHTML = instruction_text;
+    new_instruct.innerText = instruction_text;
     new_row.appendChild(new_instruct);
 
     var new_delete_button = document.createElement("img");

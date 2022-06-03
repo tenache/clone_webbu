@@ -423,7 +423,7 @@ def vote_skill(visible_id):
     return resp
 
 
-@app.route('/get_backend_steps/<string:steps_id>', methods=['GET'])
+@app.route('/get_backend_steps/<string:steps_id>', methods=['POST'])
 def get_backend_steps(steps_id):
     """
     Used by the browser extension to get the steps
@@ -432,18 +432,45 @@ def get_backend_steps(steps_id):
     _ = get_req_info(request)
 
     user_id = None
-    username = None
     user = is_logged_in_and_tokens_match(reason='get_backend_steps')
     if user:
         user_id = user.id
-        username = user.username
 
     print(f"get_backend_steps: s_id: {steps_id} u: {user_id}")
 
-    steps_function = backend_steps.backend_steps.get(steps_id)
-    steps = steps_function()
+    req_data = request.data
+    try:
+        req_json = json.loads(req_data)
+    except Exception as e:
+        print(f"get_backend_steps: failed loading req json e: {e}")
+        return flask.make_response(jsonify({'status': 'failed', 'msg': 'failed loading json'}))
 
-    return jsonify(steps)
+    page_content = req_json['page_content']
+    user_query = req_json['user_query']
+    steps_function = backend_steps.backend_steps.get(steps_id)
+
+    print(f"get_backend_steps: s_id: {steps_id} u: {user_id} q: {user_query} pc: {len(page_content)}")
+    steps = steps_function(user_query, page_content)
+
+    print(f"get_backend_steps: s_id: {steps_id} u: {user_id} result_steps: {steps}")
+
+    return flask.make_response(jsonify({'status': 'success', 'steps': steps}))
+
+
+@app.route('/test_backend_steps/<string:steps_id>', methods=['GET'])
+def test_backend_steps(steps_id):
+    """
+    test backend steps with this endpoint:
+    http://localhost:7002/test_backend_steps/change_background_color?user_query=make%20the%20background%20violet
+    """
+    steps_function = backend_steps.backend_steps.get(steps_id)
+
+    user_query = request.args.get('user_query')
+    print(f"test_backend_steps: q: {user_query}")
+    steps = steps_function(user_query, page_content="")
+
+    print(f"test_backend_steps: result_steps: {steps}")
+    return flask.make_response(jsonify({'status': 'success', 'steps': steps}))
 
 
 @app.route('/test_text', methods=['GET', 'POST'])
