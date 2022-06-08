@@ -93,7 +93,8 @@ def get_req_info(request):
     req_info = {}
     lang = get_language(request)
     email = request.cookies.get(EMAIL_COOKIE)
-    user_ip = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)  # needs config in nginx: 'proxy_set_header X-Real-IP $remote_addr;'
+    user_ip = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
+    # needs config in nginx: 'proxy_set_header X-Real-IP $remote_addr;'
 
     user_agent = request.user_agent
     referrer = request.referrer if request.referrer else ''
