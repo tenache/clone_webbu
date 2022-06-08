@@ -69,7 +69,7 @@ def is_test_env():
 
 def get_language(request):
     '''
-    Returns the language directory and the language
+    Returns the language directory and the language.
     '''
     supported_languages = ["en", "es"]  # en = english, es = spanish
     lang = request.accept_languages.best_match(supported_languages)
